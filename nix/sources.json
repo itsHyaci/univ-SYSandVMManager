@@ -1,0 +1,89 @@
+{
+    "angle": {
+        "branch": "main",
+        "description": "A conformant OpenGL ES implementation for Windows, Mac, Linux, iOS and Android.",
+        "homepage": "http://angleproject.org",
+        "owner": "google",
+        "repo": "angle",
+        "rev": "faf1bb4b3e72735f52d9130c9f1d141a19b1fd5e",
+        "sha256": "034365zffrchivwiqw3plpw003ja9isv853ajmb5r3nv9q24lhn1",
+        "type": "tarball",
+        "url": "https://github.com/google/angle/archive/faf1bb4b3e72735f52d9130c9f1d141a19b1fd5e.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "chromium-aarch64-darwin": {
+        "sha256": "1sjriz6rqfdq3d83l2i6c84vxy1sa4hw95pfhazd66v0n0pm9wzg",
+        "type": "file",
+        "url": "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Mac_Arm%2F1379013%2Fchrome-mac.zip?alt=media",
+        "url_template": "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Mac_Arm%2F<version>%2Fchrome-mac.zip?alt=media",
+        "version": "1379013"
+    },
+    "k3s-aarch64-linux": {
+        "sha256": "11n5fv9146kgx2mq30g7ykw282jbzbgv7cjc8xp7rg2k0pwnmkk2",
+        "type": "file",
+        "url": "https://github.com/k3s-io/k3s/releases/download/v1.28.7+k3s1/k3s-arm64",
+        "url_template": "https://github.com/k3s-io/k3s/releases/download/<version>/k3s-arm64",
+        "version": "v1.28.7+k3s1"
+    },
+    "libepoxy": {
+        "branch": "master",
+        "description": "Epoxy is a library for handling OpenGL function pointer management for you",
+        "homepage": "",
+        "owner": "anholt",
+        "repo": "libepoxy",
+        "rev": "bb7ddbc7bd1ee879ec50aa281dcb10cfaefb784c",
+        "sha256": "01yb183j7bvnvq2vrgxmplmn1nhqwivkqx2kr56pmqnypvfcwr5j",
+        "type": "tarball",
+        "url": "https://github.com/anholt/libepoxy/archive/bb7ddbc7bd1ee879ec50aa281dcb10cfaefb784c.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "qemu": {
+        "sha256": "15iq1grx06rfzma54wxn7sbz5m7irsyrx0qscyrcgy6w3xh7bh12",
+        "type": "file",
+        "url": "https://download.qemu.org/qemu-10.0.0.tar.xz",
+        "url_template": "https://download.qemu.org/qemu-<version>.tar.xz",
+        "version": "10.0.0"
+    },
+    "socket_vmnet": {
+        "branch": "master",
+        "description": "vmnet.framework support for unmodified rootless QEMU (no dependency on VDE)",
+        "homepage": null,
+        "owner": "lima-vm",
+        "repo": "socket_vmnet",
+        "rev": "7e78a64cf8fdcfbe59b226e110bd669fafc5a804",
+        "sha256": "19dq6c33hm5mfv8v8ykglsfwyh648pxsaqyb5ggblrm8s7l4k2vj",
+        "type": "tarball",
+        "url": "https://github.com/lima-vm/socket_vmnet/archive/7e78a64cf8fdcfbe59b226e110bd669fafc5a804.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "virglrenderer": {
+        "branch": "main",
+        "repo": "https://gitlab.freedesktop.org/virgl/virglrenderer.git",
+        "rev": "0343d95b63a406c6b1eed256faf7c98ce294c60d",
+        "type": "git"
+    },
+    "virglrenderer-akihikodaki": {
+        "branch": "macos",
+        "description": "https://gist.github.com/akihikodaki/87df4149e7ca87f18dc56807ec5a1bc5 VirGL virtual OpenGL renderer",
+        "homepage": "",
+        "owner": "akihikodaki",
+        "repo": "virglrenderer",
+        "rev": "4a489584344787ea52226ac50dd9fa86a1f38f90",
+        "sha256": "0qwvvnlmzw75yinhc70rwcn3h4mx7h4dm3v8vaaj71ajnzfqzb4a",
+        "type": "tarball",
+        "url": "https://github.com/akihikodaki/virglrenderer/archive/4a489584344787ea52226ac50dd9fa86a1f38f90.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "virglrenderer-utm": {
+        "branch": "macos",
+        "description": "https://gist.github.com/akihikodaki/87df4149e7ca87f18dc56807ec5a1bc5 VirGL virtual OpenGL renderer",
+        "homepage": "",
+        "owner": "utmapp",
+        "repo": "virglrenderer",
+        "rev": "dc039d9ecd74fc671a85bfbe7c4e4bc552b7b855",
+        "sha256": "1rx6xd38jrvkp78w7y9s0r771452a6npp8gg94bj5k85038d7rdm",
+        "type": "tarball",
+        "url": "https://github.com/utmapp/virglrenderer/archive/dc039d9ecd74fc671a85bfbe7c4e4bc552b7b855.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    }
+}

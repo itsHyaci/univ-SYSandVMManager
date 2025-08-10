@@ -50,6 +50,7 @@ There are 2 main flakes:
 
 - Install and configure software packages via [nix](https://nix.dev)
 - Build and run [NixOS](https://nixos.org) virtual machines using [QEMU](https://www.qemu.org) (see [here](#build-and-run-vms))
+  + Good for isolated dev environments
 - Manage [Homebrew](https://brew.sh) installations via [nix-homebrew](https://github.com/zhaofengli/nix-homebrew)
 - Use [Home Manager](https://github.com/nix-community/home-manager) instead of plain dotfiles. TODO: Migrate to GNU stow
 
@@ -160,9 +161,7 @@ The '[qemuGuest](#qemu-guest)' module provides a bunch of useful configuration o
 
 ## VMs
 
-### Playground
-
-Stuff built in playground:
+List of individual VM's that could be spun up:
 
 | Name       | System          | Description                                                                        |
 |------------|-----------------|------------------------------------------------------------------------------------|

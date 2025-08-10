@@ -54,13 +54,13 @@
     password = vars.primaryUser;
   };
 
-  home-manager.users."${vars.primaryUser}" = {
-    imports = [ ../../../users/common/dannyb.nix ];
-
-    home.pointerCursor = {
-       package = pkgs.yaru-theme;
-       name = "Yaru";
-    };
+#  home-manager.users."${vars.primaryUser}" = {
+#    imports = [ ../../../users/common/dannyb.nix ];
+#
+#    home.pointerCursor = {
+#       package = pkgs.yaru-theme;
+#       name = "Yaru";
+#    };
 
     programs.alacritty = {
       settings = {

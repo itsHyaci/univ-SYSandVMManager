@@ -9,8 +9,8 @@
     nix-darwin = { url = "github:LnL7/nix-darwin/master"; inputs.nixpkgs.follows = "nixpkgs-unstable"; };
     nix-homebrew = { url = "github:zhaofengli-wip/nix-homebrew"; inputs.nixpkgs.follows = "nixpkgs-unstable"; };
     nix-snapd = { url = "github:nix-community/nix-snapd"; inputs.nixpkgs.follows = "nixpkgs-unstable"; };
-    home-manager = { url = "github:nix-community/home-manager"; inputs.nixpkgs.follows = "nixpkgs-unstable"; };
-    emacs-overlay = { url = "github:nix-community/emacs-overlay"; inputs.nixpkgs.follows = "nixpkgs-unstable"; };
+    # home-manager = { url = "github:nix-community/home-manager"; inputs.nixpkgs.follows = "nixpkgs-unstable"; };
+    # emacs-overlay = { url = "github:nix-community/emacs-overlay"; inputs.nixpkgs.follows = "nixpkgs-unstable"; };
     apple-silicon = { url = "github:tpwrules/nixos-apple-silicon"; inputs.nixpkgs.follows = "nixpkgs-unstable"; };
   };
 
@@ -41,7 +41,7 @@
           lib.attrsets.mapAttrsToList (name: value: value) attrs;
 
         extendLib = lib: lib.extend(self: super: {
-          hm = inputs.home-manager.lib.hm;
+          # hm = inputs.home-manager.lib.hm;
           vmHostAttrs = options: block: if (builtins.hasAttr "cores" options.virtualisation) then block else {};
           buildQemuVm = { name, targetSystem, configuration }:
             (utils.mkVm { inherit name targetSystem configuration; }).config.system.build.startVm;
@@ -51,7 +51,7 @@
           inherit system;
           config.allowUnfree = true;
           overlays = [
-            inputs.emacs-overlay.overlay
+            # inputs.emacs-overlay.overlay
             inputs.apple-silicon.overlays.apple-silicon-overlay
             inputs.nix-alien.overlays.default
             (_: super: self.packages."${system}")
@@ -61,20 +61,20 @@
         callPkg = package:
           pkgs.callPackage package { inherit sources; };
 
-        mkHomeManagerModule = { name, version ? versions.homeManager.stateVersion }: {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            extraSpecialArgs = {
-              systemName = name;
-              inherit lib;
-              pkgsStable = utils.mkPkgs { nixpkgs = inputs.nixos-stable; };
-            };
-            sharedModules = [
-              { home.stateVersion = version; }
-            ] ++ utils.attrsToValues self.homeManagerModules;
-          };
-        };
+#        mkHomeManagerModule = { name, version ? versions.homeManager.stateVersion }: {
+#          home-manager = {
+#            useGlobalPkgs = true;
+#            useUserPackages = true;
+#            extraSpecialArgs = {
+#              systemName = name;
+#              inherit lib;
+#              pkgsStable = utils.mkPkgs { nixpkgs = inputs.nixos-stable; };
+#            };
+#            sharedModules = [
+#              { home.stateVersion = version; }
+#            ] ++ utils.attrsToValues self.homeManagerModules;
+#          };
+#        };
 
         mkVm = {
           name,
@@ -109,7 +109,7 @@
 
               users.users.root.openssh.authorizedKeys.keyFiles = [ vars.sshKeyFile ];
             })
-            inputs.home-manager.nixosModules.home-manager (utils.mkHomeManagerModule { inherit name; })
+            # inputs.home-manager.nixosModules.home-manager (utils.mkHomeManagerModule { inherit name; })
             inputs.nix-snapd.nixosModules.default
             configuration
           ] ++ utils.attrsToValues self.nixosModules;
@@ -139,7 +139,7 @@
                 configurationRevision = versions.rev;
               };
             })
-            inputs.home-manager.nixosModules.home-manager (utils.mkHomeManagerModule { inherit name; })
+#            inputs.home-manager.nixosModules.home-manager (utils.mkHomeManagerModule { inherit name; })
             configuration
           ] ++ utils.attrsToValues self.nixosModules;
         };
@@ -152,7 +152,7 @@
           };
           modules = [
             { nixpkgs.pkgs = pkgs; }
-            inputs.home-manager.darwinModules.home-manager (utils.mkHomeManagerModule { inherit name; })
+#            inputs.home-manager.darwinModules.home-manager (utils.mkHomeManagerModule { inherit name; })
             inputs.nix-homebrew.darwinModules.nix-homebrew
             {
               nix-homebrew = {
@@ -191,7 +191,7 @@
       packages = {
         aarch64-darwin = {
           # options.json
-          home-manager-options-json = inputs.home-manager.packages.aarch64-darwin.docs-json;
+#          home-manager-options-json = inputs.home-manager.packages.aarch64-darwin.docs-json;
           nixos-options-json = (lib.nixosSystem { modules = [ { nixpkgs.pkgs = pkgs; } ]; }).config.system.build.manual.optionsJSON;
           darwin-options-json = (inputs.nix-darwin.lib.darwinSystem { modules = [ { nixpkgs.pkgs = pkgs; } ]; }).config.system.build.manual.optionsJSON;
           # VMs
@@ -243,12 +243,12 @@
         tuptime = import ./modules/darwin/tuptime.nix;
       };
 
-      homeManagerModules = {
-        alacritty = import ./modules/home-manager/alacritty.nix;
-        emacs = import ./modules/home-manager/emacs.nix;
-        kitty = import ./modules/home-manager/kitty.nix;
-        tmux = import ./modules/home-manager/tmux.nix;
-      };
+#      homeManagerModules = {
+#        alacritty = import ./modules/home-manager/alacritty.nix;
+#        emacs = import ./modules/home-manager/emacs.nix;
+#        kitty = import ./modules/home-manager/kitty.nix;
+#        tmux = import ./modules/home-manager/tmux.nix;
+#      };
 
       nixosModules = {
         minimize = import ./modules/nixos/minimize.nix;
@@ -259,7 +259,7 @@
 
       overlays = {
         nixos-option = import ./overlays/tools/nix/nixos-option.nix;
-        emacs = import ./overlays/applications/editors/emacs.nix;
+        # emacs = import ./overlays/applications/editors/emacs.nix;
         lib = self: super: {
           lib = utils.extendLib super.lib;
         };

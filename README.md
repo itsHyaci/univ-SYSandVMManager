@@ -2,7 +2,7 @@
 
 # Danno's Universal System & VM Manager (Powered by Nix); Alpha Test on MacOS
 
-[Install](#os-x-instillation) • [Documentation]
+[Install](#os-x-instillation) • [Documentation](./docs/index.org)
 
 ![Build status: master](https://img.shields.io/badge/Alpha-v0.1.0-orange)
 
@@ -31,9 +31,9 @@ Yoinked & Twisted from: https://github.com/mrkuz/macos-config
 
 <div align="center">
 <p>
-  <u><b>
+  <strong><em>
   Welcome to my System & Virtual Machine Manager built declaritively through Nix.
-  </b></u>
+  </em></strong>
 </p>
 </div>
 

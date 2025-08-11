@@ -157,6 +157,12 @@ The '[qemuGuest](#qemu-guest)' module provides a bunch of useful configuration o
 
 # Building Blocks
 
+P.S. If you need to edit your vm,module,etc run this before re-cloning & rebuilding:
+
+```shell
+sudo nix --extra-experimental-features "nix-command flakes" store gc --keep-outputs
+```
+
 <a id="vms"></a>
 
 ## VMs

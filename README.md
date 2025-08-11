@@ -39,12 +39,18 @@ Yoinked & Twisted from: https://github.com/mrkuz/macos-config
 
 Manage your system configuration & qemu vms using nix ([nix-darwin](https://github.com/LnL7/nix-darwin) if OSX) with [flakes](https://nix.dev/concepts/flakes.html).
 
-There are 2 main flakes:
+There are 2 branches:
 
 | Name       | System              | Description                                                                        |
 |------------|---------------------|------------------------------------------------------------------------------------|
-| bootstrap  | darwin              | Minimal configuration including linux-builder                                      |
-| TODO       | darwin              | For Casual Scrubs 2 Copy My MacMini M2 Config                                      |
+| mini       | darwin              | Minimal configuration including linux-builder                                      |
+| chonk      | darwin              | For Casual Scrubs 2 Copy My Shit                                      |
+
+*You are are currently on the **mini** branch*
+
+The main purpose of the mini branch is to provide the virtual machine manager.
+
+A secondary purpose is to get the nix system config scaffolding up & running. That way, you can build your own config. 
 
 # Features:
 

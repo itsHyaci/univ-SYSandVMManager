@@ -1,8 +1,9 @@
 <div align="center">
 
 # Danno's Universal System & VM Manager (Powered by Nix); Alpha Test on MacOS
+ALERT! Work in Progress but I clone & update this repo on the regular so I really don't feel like privating. User beware, some features are currently fake news.
 
-[Install](#os-x-instillation) • [Documentation](./docs/index.org)
+[Install](#os-x-instillation) • [System Manager Documenation] • [Virtual Machine Manager Documentaion](./docs/index.org)
 
 ![Build status: master](https://img.shields.io/badge/Alpha-v0.1.0-orange)
 
@@ -14,8 +15,7 @@
 - [Introduction](#introduction)
 - [Features](#features)
 - [OS X Instilation](#os-x-instillation)
-- [Build and Run NixOS VMs](#build-and-run-nixos-vms)
-- [Building Blocks](#building-blocks)
+- [Build and Run VMs](#build-and-run-vms)
 
 # Introduction
 
@@ -24,10 +24,8 @@ Yoinked & Twisted from: https://github.com/mrkuz/macos-config
 - I found the repo from this post: https://www.reddit.com/r/NixOS/comments/1be4j7d/experiments_with_qemu_nixos_vms_on_macos/
 
 > ✅ Tested on OS X
-> - [ ] TODO: Fork to a Universal System & VM Manager by merging with my systemd wrapped qemu process Arch Linux script. Test in these systemd distros: Debian (Also test in Ubuntu & PopOS), Arch & NixOS.
-> - [ ] TODO: Add support for [skarnet](https://skarnet.org/software/)'s [`s6`](https://skarnet.org/software/s6/) init system. Test in Artix (with s6 init) and [sixOS](https://codeberg.org/amjoseph/sixos).
-> - [ ] TODO: If you're feeling particularly masochistic, add support for [NixBSD](https://github.com/nixos-bsd/nixbsd) & MinGW/Windows.
-> - [ ] Also consider managing the Mac Classic emulators, SheepShaver & Basilisk.
+- [ ] TODO: add doom eMacs config
+- [ ] TODO: consider creating a shell script installer.
 
 <div align="center">
 <p>
@@ -37,22 +35,38 @@ Yoinked & Twisted from: https://github.com/mrkuz/macos-config
 </p>
 </div>
 
-Manage your system configuration & qemu vms using nix ([nix-darwin](https://github.com/LnL7/nix-darwin) if OSX) with [flakes](https://nix.dev/concepts/flakes.html).
+Manage your qemu vms & your system configuration using nix ([nix-darwin](https://github.com/LnL7/nix-darwin) if OSX) with [flakes](https://nix.dev/concepts/flakes.html).
 
-There are 2 main flakes:
+There are 2 branches:
 
 | Name       | System              | Description                                                                        |
 |------------|---------------------|------------------------------------------------------------------------------------|
-| bootstrap  | darwin              | Minimal configuration including linux-builder                                      |
-| TODO       | darwin              | For Casual Scrubs 2 Copy My MacMini M2 Config                                      |
+| mini  | darwin              | Minimal configuration including linux-builder                                      |
+| chonk       | darwin              | For Casual Scrubs 2 Copy My Shit                                      |
+
+*You are currently in the **chonk** branch*
+
+The main burpose of the chonk branch is to store my config.
+
+The config is declaritively defined through flakes. Notably, without the use of home-manager.
+
+This branch also contains my OS X system managment scripts.
+
+TODO: the untimate goal is a universal system menager to merge my linux stuff to this branch.
 
 # Features:
 
+The chonk branch is my config built ontop of the mini branch. Therefore the chonk branch inherits mini's features:
 - Install and configure software packages via [nix](https://nix.dev)
 - Build and run [NixOS](https://nixos.org) virtual machines using [QEMU](https://www.qemu.org) (see [here](#build-and-run-vms))
   + Good for isolated dev environments
+
+Additionally, the chonk branch provides these features:
+- Define nix packages to be installed declaritively through a declaritive profile using flakes
+  - No home manager so you don't need to rsync after each edit. Instead, good ol GNU stow is used to store dotfiles.
 - Manage [Homebrew](https://brew.sh) installations via [nix-homebrew](https://github.com/zhaofengli/nix-homebrew)
-- Use [Home Manager](https://github.com/nix-community/home-manager) instead of plain dotfiles. TODO: Migrate to GNU stow
+
+See the [System Manager Documenation] to see everything that gets installed.
 
 Notes:
 - Not everything is installed via nix. I use following guideline:
@@ -62,8 +76,6 @@ Notes:
     3. Else -> nix
     4. Exception: Some tools for development -> [mise](https://mise.jdx.dev)
 - [Homebrew Bundle](https://github.com/Homebrew/homebrew-bundle) keeps track of software installed via App Store or Homebrew
-- [ ] TODO: add doom eMacs config
-- [ ] TODO: consider creating a shell script installer. Maybe even a flake for embedding music into the script, keygen style.
 
 # OS X Instillation
 
@@ -89,7 +101,7 @@ cd univ-SYSandVMManager
 
 3. Install nix-darwin
 
-If you just want the Virtual Machine Manager, run this cmd:
+To install the Virtual Machine Manager, run this cmd:
 ```shell
 sudo nix --extra-experimental-features "nix-command flakes" run nix-darwin/master#darwin-rebuild -- switch --flake .#bootstrap
 ```
@@ -97,88 +109,16 @@ sudo nix --extra-experimental-features "nix-command flakes" run nix-darwin/maste
 - [ ] TODO: edit config as to not necessitate appending this to nix: 
 `--extra-experimental-features "nix-command flakes"`
 
-If you also want to copy my shit you casual scrub, then run this cmd next:
+Run this cmd next to copy my shit:
 ```shell
 echo LOL not released yet, I\'m migrating my dotfiles to GNU stow
 ```
 
-- [ ] TODO: add OS X system managment scripts
-
 
 <a id="build-and-run-vms"></a>
 
-# Build and Run NixOS VMs
+# Build and Run VMs
 
-To build Linux packages on MacOS, you need a [remote Linux builder](https://nixos.org/manual/nixpkgs/stable/#sec-darwin-builder). Thankfully this can be archived with one line in nix-darwin:
+Chonk is built ontop of mini. To avoid redundancy, this section will link to the mini branch's readme for building & running VMs. 
 
-```nix
-nix.linux-builder.enable = true;
-```
-
-P.S. Enabling the linux builder is the one job bootstrap.nix .
-
-The builder is setup to start automatically. If you dislike this, add following:
-
-```nix
-launchd.daemons.linux-builder.serviceConfig = {
-  KeepAlive = lib.mkForce false;
-  RunAtLoad = lib.mkForce false;
-};
-```
-
-You then need to start the builder manually:
-
-```shell
-sudo launchctl start org.nixos.linux-builder
-```
-
-you can confirm if the builder is running with this cmd:
-```shell
-sudo launchctl list org.nixos.linux-builder
-```
-
-After the builder is up and running, you can launch every VM defined in `hosts/nixos/vm/` with a single command. For instance:
-
-```shell
-nix --extra-experimental-features "nix-command flakes" run .#playground-vm
-```
-
-In case you run into [issues](https://github.com/NixOS/nix/issues/4119) with [sandboxed](https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-sandbox) builds, you can disable the sandbox temporary with `--option sandbox false`.
-
-Use cases: Run docker, isolate applications, ... TODO: document use cases.
-
-To learn how to add additional VMs, check out [flake.nix](flake.nix) (look for `mkVm`).
-
-VMs can also be build out-of-tree, see this [example](examples/darwin/nixos-vm).
-
-The QEMU package provided and used by this configuration comes with support for hardware accelerated graphics, based on the awesome work of [Akihiko Odaki](https://gist.github.com/akihikodaki/87df4149e7ca87f18dc56807ec5a1bc5).
-
-The '[qemuGuest](#qemu-guest)' module provides a bunch of useful configuration options for QEMU guests.
-
-# Building Blocks
-
-P.S. If you need to edit your vm,module,etc run this before re-cloning & rebuilding:
-
-```shell
-sudo nix --extra-experimental-features "nix-command flakes" store gc --keep-outputs
-```
-
-<a id="vms"></a>
-
-## VMs
-
-List of individual VM's that could be spun up:
-
-| Name       | System          | Description                                                                        |
-|------------|-----------------|------------------------------------------------------------------------------------|
-| docker     | nixos (console) | Runs [Docker Engine](https://docs.docker.com/engine/)                              |
-| firefox    | nixos (graphic) | Runs [Firefox Developer Edition](https://www.mozilla.org/en-US/firefox/developer/) |
-| gnome      | nixos (graphic) | Latest [GNOME desktop environment](https://www.gnome.org) (without apps)           |
-| k3s        | nixos (console) | Runs [k3s](https://k3s.io)                                                         |
-| playground | nixos (console) | NixOS playground to fiddle around                                                  |
-| toolbox    | nixos (graphic) | VM with some tools preconfigured                                                   |
-| snapd      | nixos (console) | Runs [snapd](https://snapcraft.io/docs/get-started)                                |
-
-### VUH
-
-- [ ] TODO: Also in './vms/', add flake for the VUH-web-stack (A Virtual Machine img w/ C, D & Haskell Unikernel + Haskell Backend & Front-end-Scaffolding)
+P.S. This branch is for copying my config. If you want more info on modifying the config, refer to the building blocks section of the mini branch readme.

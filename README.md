@@ -1,8 +1,9 @@
 <div align="center">
 
 # Danno's Universal System & VM Manager (Powered by Nix); Alpha Test on MacOS
+ALERT! Work in Progress but I clone & update this repo on the regular so I really don't feel like privating. User beware, some features are currently fake news. 
 
-[Install](#os-x-instillation) • [Documentation](./docs/index.org)
+[Install](#os-x-instillation) • [Scaffolding for Custom System Manager - Documentation] • [Virtual Machine Manager Documentation](./docs/index.org)
 
 ![Build status: master](https://img.shields.io/badge/Alpha-v0.1.0-orange)
 
@@ -13,7 +14,7 @@
 ### Table of Contents
 - [Introduction](#introduction)
 - [Features](#features)
-- [OS X Instilation](#os-x-instillation)
+- [OS X Nix Instilation](#os-x-nix-instillation)
 - [Build and Run NixOS VMs](#build-and-run-nixos-vms)
 - [Building Blocks](#building-blocks)
 
@@ -24,8 +25,8 @@ Yoinked & Twisted from: https://github.com/mrkuz/macos-config
 - I found the repo from this post: https://www.reddit.com/r/NixOS/comments/1be4j7d/experiments_with_qemu_nixos_vms_on_macos/
 
 > ✅ Tested on OS X
-> - [ ] TODO: Fork to a Universal System & VM Manager by merging with my systemd wrapped qemu process Arch Linux script. Test in these systemd distros: Debian (Also test in Ubuntu & PopOS), Arch & NixOS.
-> - [ ] TODO: Add support for [skarnet](https://skarnet.org/software/)'s [`s6`](https://skarnet.org/software/s6/) init system. Test in Artix (with s6 init) and [sixOS](https://codeberg.org/amjoseph/sixos).
+> TODO: Test on 
+
 > - [ ] TODO: If you're feeling particularly masochistic, add support for [NixBSD](https://github.com/nixos-bsd/nixbsd) & MinGW/Windows.
 > - [ ] Also consider managing the Mac Classic emulators, SheepShaver & Basilisk.
 
@@ -44,7 +45,7 @@ There are 2 branches:
 | Name       | System              | Description                                                                        |
 |------------|---------------------|------------------------------------------------------------------------------------|
 | mini       | darwin              | Minimal configuration including linux-builder                                      |
-| chonk      | darwin              | For Casual Scrubs 2 Copy My Shit                                      |
+| chonk      | darwin              | For Casual Scrubs 2 Copy My Shit                                                   |
 
 *You are are currently on the **mini** branch*
 
@@ -56,22 +57,14 @@ A secondary purpose is to get the nix system config scaffolding up & running. Th
 
 - Install and configure software packages via [nix](https://nix.dev)
 - Build and run [NixOS](https://nixos.org) virtual machines using [QEMU](https://www.qemu.org) (see [here](#build-and-run-vms))
-  + Good for isolated dev environments
-- Manage [Homebrew](https://brew.sh) installations via [nix-homebrew](https://github.com/zhaofengli/nix-homebrew)
-- Use [Home Manager](https://github.com/nix-community/home-manager) instead of plain dotfiles. TODO: Migrate to GNU stow
+  
+## Use cases: 
+- Run docker
+- Isolate applications in an instance of either nixOS or sixOS
+- Create isolated dev environments
+- Launch Unikernels (I used it for testing VUH before deploying on a proxmox server)
 
-Notes:
-- Not everything is installed via nix. I use following guideline:
-    1. If it is offical Apple software or there are no other options -> App Store (using [mas](https://github.com/mas-cli/mas))
-    2. If it is proprietary software or distributed as DMG -> [Homebrew](https://brew.sh)
-        - I also added a cmd to migrate stuff from a previous install 
-    3. Else -> nix
-    4. Exception: Some tools for development -> [mise](https://mise.jdx.dev)
-- [Homebrew Bundle](https://github.com/Homebrew/homebrew-bundle) keeps track of software installed via App Store or Homebrew
-- [ ] TODO: add doom eMacs config
-- [ ] TODO: consider creating a shell script installer. Maybe even a flake for embedding music into the script, keygen style.
-
-# OS X Instillation
+# OS X Nix Instillation
 
 1. Install Nix using the [Determinate Nix Installer](https://github.com/DeterminateSystems/nix-installer?tab=readme-ov-file#determinate-nix-installer)
 
@@ -103,18 +96,14 @@ sudo nix --extra-experimental-features "nix-command flakes" run nix-darwin/maste
 - [ ] TODO: edit config as to not necessitate appending this to nix: 
 `--extra-experimental-features "nix-command flakes"`
 
-If you also want to copy my shit you casual scrub, then run this cmd next:
-```shell
-echo LOL not released yet, I\'m migrating my dotfiles to GNU stow
-```
-
-- [ ] TODO: add OS X system managment scripts
-
 
 <a id="build-and-run-vms"></a>
 
-# Build and Run NixOS VMs
+# Build and Run VMs
 
+This section is TLDR Version for the VMM documentation.
+
+## Building VMs
 To build Linux packages on MacOS, you need a [remote Linux builder](https://nixos.org/manual/nixpkgs/stable/#sec-darwin-builder). Thankfully this can be archived with one line in nix-darwin:
 
 ```nix
@@ -149,29 +138,20 @@ After the builder is up and running, you can launch every VM defined in `hosts/n
 nix --extra-experimental-features "nix-command flakes" run .#playground-vm
 ```
 
-In case you run into [issues](https://github.com/NixOS/nix/issues/4119) with [sandboxed](https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-sandbox) builds, you can disable the sandbox temporary with `--option sandbox false`.
-
-Use cases: Run docker, isolate applications, ... TODO: document use cases.
-
-To learn how to add additional VMs, check out [flake.nix](flake.nix) (look for `mkVm`).
-
-VMs can also be build out-of-tree, see this [example](examples/darwin/nixos-vm).
-
-The QEMU package provided and used by this configuration comes with support for hardware accelerated graphics, based on the awesome work of [Akihiko Odaki](https://gist.github.com/akihikodaki/87df4149e7ca87f18dc56807ec5a1bc5).
-
-The '[qemuGuest](#qemu-guest)' module provides a bunch of useful configuration options for QEMU guests.
-
-# Building Blocks
-
+In case of mishaps, go to the documentation 
+cut into vmm docs{
 P.S. If you need to edit your vm,module,etc run this before re-cloning & rebuilding:
 
 ```shell
 sudo nix --extra-experimental-features "nix-command flakes" store gc --keep-outputs
 ```
+}
 
 <a id="vms"></a>
 
 ## VMs
+
+TODO: user can chose between nixOS or sixOS. 
 
 List of individual VM's that could be spun up:
 
@@ -185,6 +165,60 @@ List of individual VM's that could be spun up:
 | toolbox    | nixos (graphic) | VM with some tools preconfigured                                                   |
 | snapd      | nixos (console) | Runs [snapd](https://snapcraft.io/docs/get-started)                                |
 
+TODO: Add support for building sixOS. the user could chose to use an instance of nixOS or an instance of sixOS(link to OS). Note graphics apps for sixOS might be scuffed.
+
+Here's the quick TLDR.
+sixOS is like if NixOS and Gentoo had a baby. 
+- Gentoo but with Haskell instead of Python.
+- NixOS but without systemd (s6 init is used instead) and is fully build from source (using nix as build instructions)
+
+A massive motivation for this project is to easilly spin up instances of sixOS as easily as instances of NixOS.
+
 ### VUH
 
 - [ ] TODO: Also in './vms/', add flake for the VUH-web-stack (A Virtual Machine img w/ C, D & Haskell Unikernel + Haskell Backend & Front-end-Scaffolding)
+
+
+
+# Running VMs
+
+Once the vm is built, the same instructions used for building the vm are used for running the vm.
+
+Makesure you have VM net running.
+
+```shell
+sudo /opt/homebrew/opt/socket_vmnet/bin/socket_vmnet --vmnet-gateway\=192.168.105.1 /var/run/socket_vmnet
+```
+
+Additionally VMM is just qemu managed through nix. So any prebuilt image that can be run in qemu can be run through the VMM.
+
+Wrapping qemu img with nix(Link to doc)
+
+I used to use a systemd process to wrap qemu and launch an image with permissions for GPU passthrough without libvert. However nix provides a truely universal alternative. 
+
+The following are cancelled for now. Note that the systemd process was necessary for gpu passthrough on linux. It might not be possible to do this with just nix. If that is the case, then the following are still a go:
+> - [x] TODO: Merging with my systemd wrapped qemu process Arch Linux script. Test in these systemd distros: Debian (Also test in Ubuntu & PopOS), Arch & NixOS.
+> - [x] TODO: Add support for [skarnet](https://skarnet.org/software/)'s [`s6`](https://skarnet.org/software/s6/) init system. Test in Artix (with s6 init) and [sixOS](https://codeberg.org/amjoseph/sixos).
+
+Cut and paste into documentation.
+{
+In case you run into [issues](https://github.com/NixOS/nix/issues/4119) with [sandboxed](https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-sandbox) builds, you can disable the sandbox temporary with `--option sandbox false`.
+
+To learn how to add additional VMs, check out [flake.nix](flake.nix) (look for `mkVm`).
+
+VMs can also be build out-of-tree, see this [example](examples/darwin/nixos-vm).
+
+The QEMU package provided and used by this configuration comes with support for hardware accelerated graphics, based on the awesome work of [Akihiko Odaki](https://gist.github.com/akihikodaki/87df4149e7ca87f18dc56807ec5a1bc5).
+
+The '[qemuGuest](#qemu-guest)' module provides a bunch of useful configuration options for QEMU guests.
+}
+
+# Building Blocks
+
+This is the TLDR/quickstart version of the [Scaffolding for Custom System Manager Documentation].
+
+Cover the bery basics of creating your own config to manage your system through the univ-SYSandVMManager
+
+NOTE: Though Nix is some shell script templates are also provided.
+
+

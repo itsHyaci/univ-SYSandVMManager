@@ -1,6 +1,6 @@
 <div align="center">
 
-# Danno's Universal System & VM Manager (Powered by Nix); Alpha Test on MacOS
+# Danno's Universal System & VM Manager (Powered by Nix)
 ALERT! Work in Progress but I clone & update this repo on the regular so I really don't feel like privating. User beware, some features are currently fake news.
 
 [Install](#os-x-instillation) • [System Manager Documenation] • [Virtual Machine Manager Documentaion](./docs/index.org)
@@ -16,12 +16,9 @@ ALERT! Work in Progress but I clone & update this repo on the regular so I reall
 - [Features](#features)
 - [OS X Instilation](#os-x-instillation)
 - [Build and Run VMs](#build-and-run-vms)
+- [Credits](#credits)
 
 # Introduction
-
-Yoinked & Twisted from: https://github.com/mrkuz/macos-config
-
-- I found the repo from this post: https://www.reddit.com/r/NixOS/comments/1be4j7d/experiments_with_qemu_nixos_vms_on_macos/
 
 > ✅ Tested on OS X
 - [ ] TODO: add doom eMacs config
@@ -77,6 +74,8 @@ Notes:
     4. Exception: Some tools for development -> [mise](https://mise.jdx.dev)
 - [Homebrew Bundle](https://github.com/Homebrew/homebrew-bundle) keeps track of software installed via App Store or Homebrew
 
+P.S. This branch is for copying my config. If you want more info on modifying the config, refer to the scaffolding documentation
+
 # OS X Instillation
 
 1. Install Nix using the [Determinate Nix Installer](https://github.com/DeterminateSystems/nix-installer?tab=readme-ov-file#determinate-nix-installer)
@@ -119,6 +118,11 @@ echo LOL not released yet, I\'m migrating my dotfiles to GNU stow
 
 # Build and Run VMs
 
-Chonk is built ontop of mini. To avoid redundancy, this section will link to the mini branch's readme for building & running VMs. 
+see vmm documenntation building & running VMs. 
 
-P.S. This branch is for copying my config. If you want more info on modifying the config, refer to the building blocks section of the mini branch readme.
+# Credits
+
+env-flake resource
+zsh config
+doom emacs intro
+

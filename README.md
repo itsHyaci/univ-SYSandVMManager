@@ -123,6 +123,8 @@ see vmm documenntation building & running VMs.
 # Credits
 
 env-flake resource
+
 zsh config
+
 doom emacs intro
 

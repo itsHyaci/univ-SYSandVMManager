@@ -1,6 +1,6 @@
 <div align="center">
 
-# Danno's Universal System & VM Manager (Powered by Nix); Alpha Test on MacOS
+# Universal System & VM Manager (Powered by Nix)
 ALERT! Work in Progress but I clone & update this repo on the regular so I really don't feel like privating. User beware, some features are currently fake news. 
 
 [Install](#os-x-instillation) • [Scaffolding for Custom System Manager - Documentation] • [Virtual Machine Manager Documentation](./docs/index.org)
@@ -17,16 +17,13 @@ ALERT! Work in Progress but I clone & update this repo on the regular so I reall
 - [OS X Nix Instilation](#os-x-nix-instillation)
 - [Build and Run NixOS VMs](#build-and-run-nixos-vms)
 - [Building Blocks](#building-blocks)
+- [Credits](#credits)
 
 # Introduction
 
-Yoinked & Twisted from: https://github.com/mrkuz/macos-config
-
-- I found the repo from this post: https://www.reddit.com/r/NixOS/comments/1be4j7d/experiments_with_qemu_nixos_vms_on_macos/
-
 > ✅ Tested on OS X
-> TODO: Test on 
-
+> 
+> - [ ] TODO: Test on Debian (& other debian based distros like Ubuntu & PoPOS) & Arch (& artix). Maybe even NixOS for Nix ception 
 > - [ ] TODO: If you're feeling particularly masochistic, add support for [NixBSD](https://github.com/nixos-bsd/nixbsd) & MinGW/Windows.
 > - [ ] Also consider managing the Mac Classic emulators, SheepShaver & Basilisk.
 
@@ -199,6 +196,7 @@ I used to use a systemd process to wrap qemu and launch an image with permission
 The following are cancelled for now. Note that the systemd process was necessary for gpu passthrough on linux. It might not be possible to do this with just nix. If that is the case, then the following are still a go:
 > - [x] TODO: Merging with my systemd wrapped qemu process Arch Linux script. Test in these systemd distros: Debian (Also test in Ubuntu & PopOS), Arch & NixOS.
 > - [x] TODO: Add support for [skarnet](https://skarnet.org/software/)'s [`s6`](https://skarnet.org/software/s6/) init system. Test in Artix (with s6 init) and [sixOS](https://codeberg.org/amjoseph/sixos).
+> NOTE: You could you could use nix to auto wrap a qemu vm into a system-d process
 
 Cut and paste into documentation.
 {
@@ -221,4 +219,13 @@ Cover the bery basics of creating your own config to manage your system through 
 
 NOTE: Though Nix is some shell script templates are also provided.
 
+# Credits
 
+Special thanks to Markus. My main resource for getting nix, nix-darwin & nix managed VM's running on MacOS.
+  - His config: https://github.com/mrkuz/macos-config
+  - Original Post: https://www.reddit.com/r/NixOS/comments/1be4j7d/experiments_with_qemu_nixos_vms_on_macos/
+
+Special thanks to Akihiko Odaki for their qemu patch for accelerated graphics on Apple Silicon.
+  - https://gist.github.com/akihikodaki/87df4149e7ca87f18dc56807ec5a1bc5
+
+Thanks to the Arch wiki for infomation on wrapping qemu in a system-d process for gpu-passthrough.

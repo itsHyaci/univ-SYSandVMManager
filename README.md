@@ -136,13 +136,6 @@ nix --extra-experimental-features "nix-command flakes" run .#playground-vm
 ```
 
 In case of mishaps, go to the documentation 
-cut into vmm docs{
-P.S. If you need to edit your vm,module,etc run this before re-cloning & rebuilding:
-
-```shell
-sudo nix --extra-experimental-features "nix-command flakes" store gc --keep-outputs
-```
-}
 
 <a id="vms"></a>
 
@@ -198,18 +191,7 @@ The following are cancelled for now. Note that the systemd process was necessary
 > - [x] TODO: Add support for [skarnet](https://skarnet.org/software/)'s [`s6`](https://skarnet.org/software/s6/) init system. Test in Artix (with s6 init) and [sixOS](https://codeberg.org/amjoseph/sixos).
 > NOTE: You could you could use nix to auto wrap a qemu vm into a system-d process
 
-Cut and paste into documentation.
-{
-In case you run into [issues](https://github.com/NixOS/nix/issues/4119) with [sandboxed](https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-sandbox) builds, you can disable the sandbox temporary with `--option sandbox false`.
 
-To learn how to add additional VMs, check out [flake.nix](flake.nix) (look for `mkVm`).
-
-VMs can also be build out-of-tree, see this [example](examples/darwin/nixos-vm).
-
-The QEMU package provided and used by this configuration comes with support for hardware accelerated graphics, based on the awesome work of [Akihiko Odaki](https://gist.github.com/akihikodaki/87df4149e7ca87f18dc56807ec5a1bc5).
-
-The '[qemuGuest](#qemu-guest)' module provides a bunch of useful configuration options for QEMU guests.
-}
 
 # Building Blocks
 

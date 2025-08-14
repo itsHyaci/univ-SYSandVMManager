@@ -1,0 +1,83 @@
+#+title: The Magic of Magit + Git Worktrees
+
+* Bootstrap
+
+** Clone the bare git repository
+
+magit-clone-bare
+
+cli:
+
+#+begin_src shell
+git clone --bare https://github.com/itsHyaci/univ-SYSandVMManager ~/Projects/univ-SYSandVMManager.git
+#+end_src
+
+#+RESULTS:
+
+The downloaded repo only stores Git data (no checked-out files)
+
+You could also do a regular clone if you also want to keep all the master files.
+
+* Magit X Worktrees
+
+** Creating a git worktree
+
+1. Go to the git repository
+2. 'SPC-g g' (opens magit status in doom eMacs)
+3. '%' opens worktree cmd window (? for help)
+4. 'b' to just create a new worktree
+5. Choose what branch you want the new worktree to be associated with.
+6. Choose the path you want to extract/checkout the branch files into
+
+** Managing Git Worktrees
+- To switch between worktrees, just do what you normally do to switch between projects.
+- M-x magit-worktree-status (lists your git worktrees)
+- When in a worktree, 'M-x magit-pull-from-upstream' to download the latest changes to the respective branch
+  * 'f' is the pull menu
+  * In case upstream origin isn't set, run this:
+- When in a worktree, 'M-x magit-push-current-to-upstream' to push your commit to the respective branch
+  * magit status to check if local commits are unpushed
+  * Always commit before pushing
+
+NOTE: Consider setting shortcuts in your e-macs config for these magit cmds
+
+*** Pushing Process
+
+As long as you are currently in the worktree directory, all of your changes correspond to the worktree.
+
+1. SPC-g g to launch magit-status
+2. Stage your changes (staging is the process of selectively preparing changes to be included in the next commit) by pressing 's' when hovering on the change you want to stage).
+    - 'u' to unstage
+    - 'S' to stage everything
+    - 'U' to unstage everything
+3. To commit, type 'c'
+    - Type 'c' one more time to open up your commit message
+    - 'C-c C-c' to save commit
+4. use the 'M-x magit-push-current-to-upstream' cmd to push or 'p' in magit-status & press the stated key for where you'd like to push.
+
+
+* Git Worktrees CLI
+If you plan on using magit, then you should use magit to build your worktree.
+Using Magit ensures proper worktree intergration when using Magit in general plus automatic path validation.
+
+But for the sake of completeness, here's the way to build a git worktree with the git cli:
+
+$ git worktree add <path-to-new-worktree> name-of-branch
+
+Example:
+#+begin_src shell
+cd ~/Projects/univ-SYSandVMManager.git
+git worktree add ../univ-SnV-worktrees/mini mini
+git worktree add ../univ-SnV-worktrees/chonk chonk
+#+end_src
+
+To remove worktrees, do this:
+$ git worktree remove name-of-worktree(should-be-name-of-respective-branch)
+
+
+* Resources:
+- Git's Best And Most Unknown Feature - ThePrimeagen: https://youtu.be/2uEqYw-N8uE?si=lYbGQ4y1AaTe1KFv
+- learn git worktrees in under 5 minutes - bashbunni: https://youtu.be/8vsRb2mTBA8?si=dtR5gi-wFHmZS2Ba
+- https://magit.vc/manual/magit/Worktree.html
+- The Magit Git Client Is The "Killer Feature" In Emacs - Distrotube: https://youtu.be/X_iX5US1_xE?si=AEJd4PEo4D3ogqrj
+- Emacs Magit - Getting Started - Emacs Doom 18: https://youtu.be/7ywEgcbaiys?si=GAW0u0RUh5n5yYPS

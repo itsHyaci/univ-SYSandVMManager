@@ -1,3 +1,2 @@
-#+TITLE: Universal System Manager & VMM Documentation
+#+TITLE: Scaffolding for Custom System Manager - Documentation
 
-* Libvert Who?

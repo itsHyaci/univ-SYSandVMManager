@@ -3,7 +3,7 @@
 # Universal System & VM Manager (Powered by Nix)
 ALERT! Work in Progress but I clone & update this repo on the regular so I really don't feel like privating. User beware, some features are currently fake news. 
 
-[Install](#os-x-instillation) • [Scaffolding for Custom System Manager - Documentation] • [Virtual Machine Manager Documentation](./docs/index.org)
+[Install](#os-x-nix-instillation) • [Scaffolding for Custom System Manager - Documentation](./docs/index.org) • [Virtual Machine Manager Documentation](./docs/vmm.org)
 
 ![Build status: master](https://img.shields.io/badge/Alpha-v0.1.0-orange)
 

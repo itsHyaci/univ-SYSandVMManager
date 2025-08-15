@@ -3,7 +3,7 @@
 # Danno's Universal System & VM Manager (Powered by Nix)
 ALERT! Work in Progress but I clone & update this repo on the regular so I really don't feel like privating. User beware, some features are currently fake news.
 
-[Install](#os-x-instillation) • [System Manager Documenation] • [Virtual Machine Manager Documentaion](./docs/index.org)
+[Install](#os-x-instillation) • [System Manager Documenation](./docs/smm.org) • [Virtual Machine Manager Documentaion](./docs/index.org)
 
 ![Build status: master](https://img.shields.io/badge/Alpha-v0.1.0-orange)
 
@@ -122,7 +122,8 @@ see vmm documenntation building & running VMs.
 
 # Credits
 
-env-flake resource
+- env-flake resource:
+https://discourse.nixos.org/t/transitioning-from-imperative-to-declarative-package-management-with-nix-alone/28728
 
 zsh config
 

@@ -1,0 +1,47 @@
+#+title: System Manager Documenation
+
+
+
+* System Managment Shell Scripts:
+
+
+
+* My Config:
+
+nix profile install nixpkgs#irony-server
+
+nix profile install nixpkgs#bear
+
+nix profile install nixpkgs#dtools
+
+
+Use amathyst or aerospace for tiling manager. EXWM is only for xwindow no mac or wayland suppport :(
+https://github.com/nikitabobko/AeroSpace
+https://github.com/ianyh/Amethyst
+
+https://redlib.orangenet.cc/r/emacs/comments/1k5znwd/exwm_user_migrating_to_mac_os_advice_needed/
+https://reddit.adminforge.de/r/macapps/comments/1arq5a6/whats_the_best_window_manager/
+
+
+From this rice:
+https://redlib.orangenet.cc/r/unixporn/comments/17mtrzt/amethyst_macos/
+
+nix profile install nixpkgs#sketchybar
+nix profile install nixpkgs#jankyborders
+
+Linking with gnu stow
+
+see master list:
+https://redlib.orangenet.cc/r/macapps/comments/1j56vvb/mac_app_comparisons_2025_update/
+
+Use
+https://discourse.nixos.org/t/transitioning-from-imperative-to-declarative-package-management-with-nix-alone/28728
+
+https://github.com/lf-/flakey-profile?tab=readme-ov-file
+
+** Emacs config
+Link to doom emacs config docs:
+
+** Wezterm config:
+
+** Minimal Nvim config (for terminal uses)

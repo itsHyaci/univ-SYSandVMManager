@@ -186,7 +186,7 @@
       nixosConfigurations.playground-qcow2 = utils.mkVm { name = "playground"; targetSystem = "aarch64-linux"; profile = ./profiles/nixos/qemu-qcow2.nix; };
 
       darwinConfigurations."bootstrap" = utils.mkDarwin { name = "bootstrap"; };
-      darwinConfigurations."m4" = utils.mkDarwin { name = "m4"; };
+      darwinConfigurations."hyaci" = utils.mkDarwin { name = "hyaci"; };
 
       packages = {
         aarch64-darwin = {

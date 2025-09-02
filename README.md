@@ -90,7 +90,7 @@ For some reason, nix-darwin doesn't like determinate nix. Don't know why (I thin
 
 ![Determinate nix NOT supported](./docs/images/good-nix-install.png)
 
-2. Clone repo
+2. Clone repo (make sure you're in the "chonk" directory)
 
 ```shell
 nix shell nixpkgs#git
@@ -110,7 +110,7 @@ sudo nix --extra-experimental-features "nix-command flakes" run nix-darwin/maste
 
 Run this cmd next to copy my shit:
 ```shell
-echo LOL not released yet, I\'m migrating my dotfiles to GNU stow
+sudo darwin-rebuild switch --flake .#hyaci
 ```
 
 

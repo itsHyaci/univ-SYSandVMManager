@@ -39,6 +39,14 @@ https://discourse.nixos.org/t/transitioning-from-imperative-to-declarative-packa
 
 https://github.com/lf-/flakey-profile?tab=readme-ov-file
 
+PS: If switching between mini & chonk or visa-versa & you run into this error:
+"error: path 'nix/store/random_number-source/some/file' does not exist"
+you should run:
+#+begin_src shell
+nix --extra-experimental-features "nix-command flakes" store gc
+#+end_src
+then rebuild
+
 ** Emacs config
 Link to doom emacs config docs:
 

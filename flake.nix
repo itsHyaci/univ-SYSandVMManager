@@ -21,16 +21,17 @@
       lib = utils.extendLib nixpkgs.lib;
       pkgs = utils.mkPkgs {};
       pkgsLinux = utils.mkPkgs { system = "aarch64-linux"; };
-    in{
-      packages.aarch64-darwin = {
-        name = "my-sys";
-        paths = with pkgs; [
-          irony-server
-          bear
-          dtools
-          beamMinimal28Packages.elixir-ls
-        ];
-           );
+#    in{
+#      packages.aarch64-darwin = {
+#        name = "my-sys";
+#        paths = with pkgs; [
+#          irony-server
+#          bear
+#          dtools
+#          beamMinimal28Packages.elixir-ls
+#        ];
+#      };
+#      };
 
       vars = {
         currentSystem = "aarch64-darwin";

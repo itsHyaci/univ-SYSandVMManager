@@ -15,4 +15,11 @@
 #        ];
 #  };
 
+  system.primaryUser = "dannyb";
+    users.users.dannyb = {
+                         home = "/Users/dannyb";
+                       };
+
+  home-manager.users."dannyb" = ./. + "/../../users/darwin/dannyb@hyaci.nix";
+
 }

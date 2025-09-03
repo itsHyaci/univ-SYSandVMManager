@@ -17,11 +17,6 @@
       fd
       ripgrep
       tldr
-      irony-server
-      bear
-      dtools
-      beamMinimal28Packages.elixir-ls
-
     ];
   };
 

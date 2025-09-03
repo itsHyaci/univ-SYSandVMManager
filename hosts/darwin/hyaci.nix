@@ -5,16 +5,14 @@
     ephemeral = true;
   };
 
-  { pkgs ? import <nixpkgs> {} }:
-with pkgs; buildEnv {
-  name = "my-env";
-  paths = [
-    irony-server
-    # asdf-vm
-    bear
-    dtools
-    beamMinimal28Packages.elixir-ls
-];
-}
+#  packages.aarch64-linux = {
+#        name = "my-sys";
+#        paths = with pkgs; [
+#          irony-server
+#          bear
+#          dtools
+#          beamMinimal28Packages.elixir-ls
+#        ];
+#  };
 
 }

@@ -83,7 +83,7 @@
             };
             sharedModules = [
               { home.stateVersion = version; }
-            ] # ++ utils.attrsToValues self.homeManagerModules;
+            ]; # ++ utils.attrsToValues self.homeManagerModules;
           };
         };
 

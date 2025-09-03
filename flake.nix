@@ -81,9 +81,9 @@
               inherit lib;
               pkgsStable = utils.mkPkgs { nixpkgs = inputs.nixos-stable; };
             };
-            sharedModules = [
-              { home.stateVersion = version; }
-            ] ++ utils.attrsToValues self.homeManagerModules;
+#            sharedModules = [
+#              { home.stateVersion = version; }
+#            ] ++ utils.attrsToValues self.homeManagerModules;
           };
         };
 

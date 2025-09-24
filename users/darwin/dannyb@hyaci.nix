@@ -9,6 +9,7 @@
       bear
       dtools
       beamMinimal28Packages.elixir-ls
+      vips
     ];
   };
 }
